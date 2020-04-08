@@ -2,6 +2,7 @@ package com.company.landonhotel.controller;
 
 import com.company.landonhotel.domain.QuoteRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +16,7 @@ public class QuoteRequestManagementController {
         return "quoteRequestList";
     }
 
-    @GetMapping(path = "/quoteRequests", params="eventType=wedding")
+    @GetMapping(path = "/quoteRequests", params = "eventType=wedding")
     public String listWeddingRequests() {
 
 
@@ -64,6 +65,11 @@ public class QuoteRequestManagementController {
         // implement a save of all of the form bean information
 
         return "quoteRequestDetail";
+    }
+
+    @ModelAttribute
+    public void addCommonAttributes(@RequestParam String eventType, Model model) {
+        String customMessage = "You are viewing request for +" + eventType;
     }
 }
 
